@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Talent and Visitor Workshop - MBZUAI Abu Dhabi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --mbzuai-blue: #003366;
+            --mbzuai-gold: #d4af37;
+            --mbzuai-light-blue: #5d8aa8;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .header-text h1 {
+            font-size: 1.4rem;
+            color: var(--mbzuai-blue);
+            margin-bottom: 5px;
+        }
+        
+        .header-text p {
+            font-size: 0.9rem;
+            color: var(--mbzuai-light-blue);
+            font-weight: 500;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--mbzuai-blue);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--mbzuai-gold);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--mbzuai-blue);
+            cursor: pointer;
+        }
+        
+        /* Hero Section with MBZUAI Banner */
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.9)), url('https://mbzuai-cl.github.io/2023/assets/banner.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-details {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-width: 180px;
+        }
+        
+        .detail-icon {
+            background-color: rgba(212, 175, 55, 0.3);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .detail-icon i {
+            font-size: 1.5rem;
+            color: var(--mbzuai-gold);
+        }
+        
+        .detail-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .detail-text p {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            padding: 40px 0;
+            background-color: white;
+        }
+        
+        .gallery-title {
+            text-align: center;
+            color: var(--mbzuai-blue);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            height: 220px;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Agenda Section */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            color: var(--mbzuai-blue);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--mbzuai-gold);
+        }
+        
+        .agenda-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .agenda-day {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .day-header {
+            background-color: var(--mbzuai-blue);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .day-header i {
+            margin-right: 10px;
+            color: var(--mbzuai-gold);
+        }
+        
+        .agenda-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .agenda-table th {
+            background-color: var(--light-gray);
+            padding: 15px;
+            text-align: left;
+            color: var(--mbzuai-blue);
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .agenda-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .agenda-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .agenda-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .time-col {
+            width: 200px;
+            font-weight: 600;
+            color: var(--mbzuai-blue);
+        }
+        
+        .break-row {
+            background-color: #fff9e6 !important;
+        }
+        
+        .speaker-row {
+            background-color: #f0f7ff !important;
+        }
+        
+        /* Speakers Section */
+        .speakers-section {
+            background-color: var(--light-gray);
+            padding: 60px 0;
+            margin: 40px 0;
+        }
+        
+        .speakers-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .speaker-link {
+            display: inline-block;
+            background-color: var(--mbzuai-blue);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .speaker-link:hover {
+            background-color: #002244;
+        }
+        
+        /* Venue Section */
+        .venue-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .venue-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .venue-map {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .venue-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            border: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--mbzuai-blue);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--mbzuai-gold);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--mbzuai-gold);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .header-text h1 {
+                font-size: 1.2rem;
+            }
+            
+            .detail-item {
+                min-width: 150px;
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .agenda-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .time-col {
+                width: 150px;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .hero-details {
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .day-header {
+                font-size: 1.1rem;
+            }
+            
+            .detail-item {
+                min-width: 100%;
+            }
+            
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo">
+                        <!-- MBZUAI Logo -->
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="60" height="60" rx="10" fill="#003366"/>
+                            <path d="M15 20L30 35L45 20" stroke="#D4AF37" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M20 40H40" stroke="#D4AF37" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="30" cy="25" r="3" fill="#D4AF37"/>
+                        </svg>
+                    </div>
+                    <div class="header-text">
+                        <h1>MBZUAI Abu Dhabi</h1>
+                        <p>Machine Learning Talent and Visitor Workshop</p>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#gallery">Abu Dhabi & MBZUAI</a></li>
+                    <li><a href="#agenda">Agenda</a></li>
+                    <li><a href="#speakers">Speakers</a></li>
+                    <li><a href="#venue">Venue</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with MBZUAI Banner -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>ML Talent and Visitor Workshop</h2>
+            <p>Join us for an exclusive workshop bringing together leading machine learning researchers, practitioners, and students at MBZUAI in Abu Dhabi. Explore cutting-edge research, foster collaborations, and engage with the ML community.</p>
+            
+            <div class="hero-details">
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="detail-text">
+                        <h4>Date</h4>
+                        <p>To be announced</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="detail-text">
+                        <h4>Venue</h4>
+                        <p>MBZUAI, Abu Dhabi, UAE</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="detail-text">
+                        <h4>Participants</h4>
+                        <p>Researchers, Students, Industry</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <div class="detail-text">
+                        <h4>Speakers</h4>
+                        <p>International Experts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Abu Dhabi and MBZUAI Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="gallery-title">Abu Dhabi & MBZUAI</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Abu Dhabi Skyline">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1620560411072-a0f3496e10c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Abu Dhabi Architecture">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Technology and AI Concept">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agenda Section -->
+    <section id="agenda">
+        <div class="container">
+            <h2 class="section-title">Workshop Agenda</h2>
+            
+            <div class="agenda-container">
+                <!-- Day 1 -->
+                <div class="agenda-day">
+                    <div class="day-header">
+                        <i class="fas fa-calendar-day"></i>
+                        <h3>Day 1: ML Talent and Visitor Workshop</h3>
+                    </div>
+                    
+                    <table class="agenda-table">
+                        <thead>
+                            <tr>
+                                <th class="time-col">Time</th>
+                                <th>Event</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="time-col">9:00 am - 9:45 am</td>
+                                <td>Registration, coffee and tea</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">9:45 am - 10:00 am</td>
+                                <td>Welcome and introduction</td>
+                            </tr>
+                            <tr class="speaker-row">
+                                <td class="time-col">10:00 am - 10:45 am</td>
+                                <td><strong>Speaker 1</strong> - Presentation Title TBD</td>
+                            </tr>
+                            <tr class="speaker-row">
+                                <td class="time-col">10:45 am - 11:30 am</td>
+                                <td><strong>Speaker 2</strong> - Presentation Title TBD</td>
+                            </tr>
+                            <tr class="break-row">
+                                <td class="time-col">11:30 am - 11:45 am</td>
+                                <td><strong>Break</strong></td>
+                            </tr>
+                            <tr class="speaker-row">
+                                <td class="time-col">11:45 am - 12:30 pm</td>
+                                <td><strong>Speaker 3</strong> - Presentation Title TBD</td>
+                            </tr>
+                            <tr class="break-row">
+                                <td class="time-col">12:30 pm - 1:30 pm</td>
+                                <td><strong>Lunch</strong></td>
+                            </tr>
+                            <tr class="speaker-row">
+                                <td class="time-col">1:30 pm - 2:15 pm</td>
+                                <td><strong>Speaker 4</strong> - Presentation Title TBD</td>
+                            </tr>
+                            <tr class="speaker-row">
+                                <td class="time-col">2:15 pm - 3:00 pm</td>
+                                <td><strong>Speaker 5</strong> - Presentation Title TBD</td>
+                            </tr>
+                            <tr class="break-row">
+                                <td class="time-col">3:00 pm - 3:30 pm</td>
+                                <td><strong>Break</strong></td>
+                            </tr>
+                            <tr class="speaker-row">
+                                <td class="time-col">3:30 pm - 4:15 pm</td>
+                                <td><strong>Speaker 6</strong> - Presentation Title TBD</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">4:15 pm - 5:15 pm</td>
+                                <td>Breakouts for meeting students and researchers</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Day 2 -->
+                <div class="agenda-day">
+                    <div class="day-header">
+                        <i class="fas fa-calendar-day"></i>
+                        <h3>Day 2: ML Talent and Visitor Workshop</h3>
+                    </div>
+                    
+                    <table class="agenda-table">
+                        <thead>
+                            <tr>
+                                <th class="time-col">Time</th>
+                                <th>Event</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="time-col">9:00 am - 9:45 am</td>
+                                <td>Registration, coffee and tea</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">9:45 am - 10:00 am</td>
+                                <td>Welcome and introduction</td>
+                            </tr>
+                            <tr class="speaker-row">
+                                <td class="time-col">10:00 am - 10:45 am</td>
+                                <td><strong>Speaker 8</strong> - Presentation Title TBD</td>
+                            </tr>
+                            <tr class="speaker-row">
+                                <td class="time-col">10:45 am - 11:30 am</td>
+                                <td><strong>Speaker 9</strong> - Presentation Title TBD</td>
+                            </tr>
+                            <tr class="break-row">
+                                <td class="time-col">11:30 am - 11:45 am</td>
+                                <td><strong>Break</strong></td>
+                            </tr>
+                            <tr class="speaker-row">
+                                <td class="time-col">11:45 am - 12:30 pm</td>
+                                <td><strong>Speaker 10</strong> - Presentation Title TBD</td>
+                            </tr>
+                            <tr class="break-row">
+                                <td class="time-col">12:30 pm - 1:30 pm</td>
+                                <td><strong>Lunch</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">1:30 pm - 2:15 pm</td>
+                                <td>Breakouts for meeting students and researchers</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">2:15 pm - 3:00 pm</td>
+                                <td>Breakouts for meeting students and researchers</td>
+                            </tr>
+                            <tr class="break-row">
+                                <td class="time-col">3:00 pm - 3:30 pm</td>
+                                <td><strong>Break</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">3:30 pm - 4:15 pm</td>
+                                <td>Breakouts for meeting students and researchers</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">4:15 pm - 5:00 pm</td>
+                                <td>Breakouts for meeting students and researchers</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Day 3 -->
+                <div class="agenda-day">
+                    <div class="day-header">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Day 3: Local Tour Event</h3>
+                    </div>
+                    
+                    <div style="padding: 30px;">
+                        <p>Join us for a special local tour event to explore Abu Dhabi's cultural and architectural landmarks. Details will be announced closer to the event date.</p>
+                        <ul style="margin-top: 15px; padding-left: 20px;">
+                            <li>Experience Abu Dhabi's rich cultural heritage</li>
+                            <li>Visit iconic landmarks and attractions</li>
+                            <li>Network with fellow participants in a relaxed setting</li>
+                            <li>More details to be announced</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers Section -->
+    <section class="speakers-section" id="speakers">
+        <div class="container">
+            <h2 class="section-title">Featured Speakers</h2>
+            
+            <div class="speakers-intro">
+                <p>We are bringing together leading researchers and practitioners in machine learning from around the world. Our speaker lineup includes experts from academia and industry who will share their latest research and insights.</p>
+                
+                <p>The complete list of potential speakers is available in the shared document:</p>
+                
+                <a href="https://mbzuaiac-my.sharepoint.com/:x:/g/personal/praneeth_vepakomma_mbzuai_ac_ae/IQA97joa3AtFRKz6eD7BXiKOAZlUKeGGoH6HpxT559N4pDg?e=hbZtdR&nav=MTVfezAwMDAwMDAwLTAwMDEtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMH0" target="_blank" class="speaker-link">
+                    <i class="fas fa-external-link-alt"></i> View Potential Speakers List
+                </a>
+                
+                <p style="margin-top: 30px; font-style: italic;">Speaker names and presentation titles will be finalized and announced closer to the event date.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section id="venue">
+        <div class="container">
+            <h2 class="section-title">Venue</h2>
+            
+            <div class="venue-container">
+                <div class="venue-info">
+                    <h3>MBZUAI, Abu Dhabi</h3>
+                    <p>The Mohamed bin Zayed University of Artificial Intelligence (MBZUAI) is the world's first graduate-level, research-based artificial intelligence university.</p>
+                    
+                    <div style="margin-top: 20px;">
+                        <h4>Location Details</h4>
+                        <p><i class="fas fa-map-marker-alt" style="color: var(--mbzuai-blue); margin-right: 10px;"></i> Abu Dhabi, United Arab Emirates</p>
+                        
+                        <h4 style="margin-top: 20px;">About MBZUAI</h4>
+                        <p>MBZUAI aims to empower students, businesses, and governments to advance artificial intelligence as a global force for positive progress. The university offers MSc and PhD programs in key areas of AI including machine learning, computer vision, and natural language processing.</p>
+                    </div>
+                </div>
+                
+                <div class="venue-map">
+                    <!-- Google Map Embed -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3634.476343290449!2d54.37735931543169!3d24.37792498429826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e45e9d4897d85%3A0x5b0b07d14c5c5b5e!2sMohamed%20bin%20Zayed%20University%20of%20Artificial%20Intelligence!5e0!3m2!1sen!2sae!4v1650123456789!5m2!1sen!2sae" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ML Talent and Visitor Workshop</h3>
+                    <p>An exclusive machine learning workshop at MBZUAI bringing together researchers, practitioners, and students to share knowledge and foster collaborations.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#gallery">Abu Dhabi & MBZUAI</a></li>
+                        <li><a href="#agenda">Agenda</a></li>
+                        <li><a href="#speakers">Speakers</a></li>
+                        <li><a href="#venue">Venue</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-university" style="margin-right: 10px;"></i> MBZUAI, Abu Dhabi, UAE</li>
+                        <li><i class="fas fa-link" style="margin-right: 10px;"></i> <a href="https://mbzuai.ac.ae" target="_blank">mbzuai.ac.ae</a></li>
+                        <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> <a href="mailto:workshop@mbzuai.ac.ae">workshop@mbzuai.ac.ae</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MBZUAI Machine Learning Talent and Visitor Workshop. All rights reserved.</p>
+                <p style="margin-top: 5px;">This webpage is for informational purposes. Event details are subject to change.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Highlight current day in agenda
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const dayHeaders = document.querySelectorAll('.day-header');
+            
+            // For demo purposes, highlight Day 1
+            if(dayHeaders.length > 0) {
+                dayHeaders[0].style.backgroundColor = '#002244';
+            }
+        });
+    </script>
+</body>
+</html>
